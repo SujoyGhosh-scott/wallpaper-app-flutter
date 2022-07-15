@@ -6,12 +6,13 @@ import 'package:wallpapers/data/data.dart';
 import 'package:wallpapers/model/categories_model.dart';
 import 'package:wallpapers/model/wallpaper_model.dart';
 import 'package:wallpapers/views/category.dart';
+import 'package:wallpapers/views/search.dart';
 //import 'package:wallpapers/views/search.dart';
 import 'package:wallpapers/widgets/widgets.dart';
 import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -57,58 +58,61 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                    color: Color(0xfff5f8fd),
-                    borderRadius: BorderRadius.all(Radius.circular(24))),
-                margin: const EdgeInsets.symmetric(horizontal: 24),
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: searchController,
-                        decoration: const InputDecoration(
-                            hintText: "Search wallpaper",
-                            border: InputBorder.none),
-                      ),
+        child: Column(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  color: Color(0xfff5f8fd),
+                  borderRadius: BorderRadius.all(Radius.circular(24))),
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: searchController,
+                      decoration: const InputDecoration(
+                          hintText: "Search wallpaper",
+                          border: InputBorder.none),
                     ),
-                    const Icon(Icons.search)
-                    // IconButton(onPressed: (() {
-                    //   Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => Search(
-                    //    searchQuery: searchController.text
-                    //   )),
-                    // )
-                    // }, icon: Icon(Icons.search))
-                  ],
-                ),
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        if (searchController.text != "") {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Search(
+                                      searchQuery: searchController.text)));
+                        }
+                      },
+                      child: const Icon(Icons.search)),
+                ],
               ),
-              const SizedBox(
-                height: 16,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SizedBox(
+              height: 80,
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemBuilder: (context, index) {
+                  return CategoriesTile(
+                    title: categories[index].categorieName,
+                    imgUrl: categories[index].imgUrl,
+                  );
+                },
+                itemCount: categories.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
               ),
-              Container(
-                height: 80,
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  itemBuilder: (context, index) {
-                    return CategoriesTile(
-                      title: categories[index].categorieName,
-                      imgUrl: categories[index].imgUrl,
-                    );
-                  },
-                  itemCount: categories.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
-              wallpapersList(wallpapers, context)
-            ],
-          ),
+            ),
+            wallpapersList(wallpapers, context),
+            const SizedBox(
+              height: 16,
+            )
+          ],
         ),
       ),
     );

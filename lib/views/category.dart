@@ -48,16 +48,24 @@ class _CateGorieState extends State<CateGorie> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: const BackButton(color: Colors.black),
         title: BrandName(),
         elevation: 0,
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(children: [
+          Text(
+            "${widget.categorieName} wallpapers",
+            style: const TextStyle(color: Colors.black54, fontSize: 20),
+          ),
           const SizedBox(
             height: 16,
           ),
-          wallpapersList(wallpapers, context)
+          wallpapersList(wallpapers, context),
+          const SizedBox(
+            height: 16,
+          )
         ]),
       ),
     );

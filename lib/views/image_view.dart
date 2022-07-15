@@ -1,10 +1,11 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
+// import 'package:wallpaper_manager/wallpaper_manager.dart';
+// import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class ImageView extends StatefulWidget {
   final String imgUrl;
@@ -16,6 +17,14 @@ class ImageView extends StatefulWidget {
 
 class _ImageViewState extends State<ImageView> {
   late final String imgView;
+
+  // Future<void> setWallpaper() async {
+  //   int location = WallpaperManager.HOME_SCREEN;
+  //   // or location = WallpaperManager.LOCK_SCREEN;
+  //   var file = await DefaultCacheManager().getSingleFile(widget.imgUrl);
+  //   final String result =
+  //       await WallpaperManager.setWallpaperFromFile(file.path, location);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +50,12 @@ class _ImageViewState extends State<ImageView> {
           child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
             GestureDetector(
               onTap: () async {
-                _save();
-                //Navigator.pop(context);
+                //setWallpaper();
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                width: MediaQuery.of(context).size.width / 2,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: MediaQuery.of(context).size.width * 0.8,
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.white54, width: 1),
                     borderRadius: BorderRadius.circular(30),
@@ -56,11 +65,11 @@ class _ImageViewState extends State<ImageView> {
                   children: const [
                     Text(
                       "Set Wallpaper",
-                      style: TextStyle(fontSize: 16, color: Colors.white70),
+                      style: TextStyle(fontSize: 18, color: Colors.white70),
                     ),
                     Text(
-                      "Image will be saved in gallery",
-                      style: TextStyle(fontSize: 10, color: Colors.white70),
+                      "set image as homescreen wallpaper",
+                      style: TextStyle(fontSize: 14, color: Colors.white70),
                     )
                   ],
                 ),
@@ -70,16 +79,46 @@ class _ImageViewState extends State<ImageView> {
               height: 20,
             ),
             GestureDetector(
+              onTap: () async {
+                _save();
+                //Navigator.pop(context);
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                width: MediaQuery.of(context).size.width * 0.8,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white54, width: 1),
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: const LinearGradient(
+                        colors: [Color(0x36ffffff), Color(0x0fffffff)])),
+                child: Column(
+                  children: const [
+                    Text(
+                      "Save Wallpaper",
+                      style: TextStyle(fontSize: 18, color: Colors.white70),
+                    ),
+                    Text(
+                      "Image will be saved in gallery",
+                      style: TextStyle(fontSize: 14, color: Colors.white70),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            GestureDetector(
               onTap: () {
                 Navigator.pop(context);
               },
               child: const Text(
                 "Cancel",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 54,
             )
           ]),
         )
@@ -93,7 +132,7 @@ class _ImageViewState extends State<ImageView> {
         .get(widget.imgUrl, options: Options(responseType: ResponseType.bytes));
     final result =
         await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
-    print(result);
+    //print(result);
     Navigator.pop(context);
   }
 

@@ -8,11 +8,13 @@ Widget BrandName() {
     children: const [
       Text(
         "Wall",
-        style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 22),
       ),
       Text(
         "Papers",
-        style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 22),
       )
     ],
   );
@@ -40,13 +42,11 @@ Widget wallpapersList(List<WallpaperModel> wallpapers, context) {
           },
           child: Hero(
             tag: wallpaper.src.portrait,
-            child: Container(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  wallpaper.src.portrait,
-                  fit: BoxFit.cover,
-                ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                wallpaper.src.portrait,
+                fit: BoxFit.cover,
               ),
             ),
           ),

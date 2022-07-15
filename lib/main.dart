@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpapers/views/home.dart';
 
 Future<void> main() async {
@@ -15,10 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Wallpapers',
       theme: ThemeData(
-        primaryColor: Colors.white,
-      ),
+          primaryColor: Colors.white,
+          fontFamily: GoogleFonts.quicksand().fontFamily),
       home: Home(),
     );
   }
