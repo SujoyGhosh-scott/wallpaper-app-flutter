@@ -50,6 +50,15 @@ class _CateGorieState extends State<CateGorie> {
       appBar: AppBar(
         leading: const BackButton(color: Colors.black),
         title: BrandName(),
+        actions: [
+          Opacity(
+            opacity: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: const Icon(Icons.abc),
+            ),
+          )
+        ],
         elevation: 0,
         backgroundColor: Colors.white,
       ),

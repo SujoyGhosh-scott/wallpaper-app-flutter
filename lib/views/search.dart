@@ -51,6 +51,15 @@ class _SearchState extends State<Search> {
         leading: const BackButton(color: Colors.black),
         backgroundColor: Colors.white,
         title: BrandName(),
+        actions: [
+          Opacity(
+            opacity: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: const Icon(Icons.abc),
+            ),
+          )
+        ],
         elevation: 0,
       ),
       body: SingleChildScrollView(

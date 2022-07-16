@@ -9,27 +9,27 @@ List<CategoriesModel> getCategories() {
   categorieModel.categorieName = "Street Art";
   categorieModel.imgUrl = "https://wallpapercave.com/wp/wp3559845.jpg";
   categories.add(categorieModel);
-  categorieModel = new CategoriesModel();
+  categorieModel = CategoriesModel();
 
   categorieModel.categorieName = "Space";
   categorieModel.imgUrl = "https://wallpapercave.com/dwp1x/wp10856122.jpg";
   categories.add(categorieModel);
-  categorieModel = new CategoriesModel();
+  categorieModel = CategoriesModel();
 
   categorieModel.categorieName = "Abstract";
   categorieModel.imgUrl = "https://wallpapercave.com/dwp1x/wp11197005.jpg";
   categories.add(categorieModel);
-  categorieModel = new CategoriesModel();
+  categorieModel = CategoriesModel();
 
   categorieModel.categorieName = "Anime";
   categorieModel.imgUrl = "https://wallpapercave.com/dwp1x/wp5174779.jpg";
   categories.add(categorieModel);
-  categorieModel = new CategoriesModel();
+  categorieModel = CategoriesModel();
 
   categorieModel.categorieName = "Coding";
   categorieModel.imgUrl = "https://wallpapercave.com/dwp1x/wp7692192.jpg";
   categories.add(categorieModel);
-  categorieModel = new CategoriesModel();
+  categorieModel = CategoriesModel();
 
   return categories;
 }
